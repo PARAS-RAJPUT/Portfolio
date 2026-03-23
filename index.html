@@ -353,6 +353,61 @@
     }
     .skill-chip img { width: 18px; height: 18px; object-fit: contain; filter: grayscale(0.3); }
 
+
+/* =========================
+   SKILLS SECTION SPACING
+   ========================= */
+
+#skills {
+  padding: 7rem 2rem;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* GRID SPACING */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;   /* 👈 spacing between chips */
+  margin-top: 3rem;
+  justify-content: center;
+}
+
+/* CHIP DESIGN */
+.skill-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  padding: 0.7rem 1rem;  /* 👈 more breathing space inside */
+  border-radius: 10px;
+
+  background: var(--surface2);
+  transition: all 0.3s ease;
+
+  font-size: 0.85rem;
+  color: #ddd;
+}
+
+/* ICON */
+.skill-chip img {
+  width: 20px;
+  height: 20px;
+}
+
+/* 🔥 HOVER EFFECT */
+.skill-chip:hover {
+  transform: translateY(-5px) scale(1.05);
+  background: rgba(255,255,255,0.06);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* OPTIONAL: smooth feel */
+.skill-chip {
+  cursor: default;
+  user-select: none;
+}
+
     /* PROJECTS */
     #projects { border-top: 1px solid var(--border); max-width: 1200px; margin: 0 auto; padding: 6rem 3rem; }
     .projects-grid {
@@ -639,205 +694,377 @@
     /*Certificates*/
 
 
+/* =========================
+   CERTIFICATES SPACING + LAYOUT
+   ========================= */
+
 #Certificates {
-  width: 100%;
-  border-top: 1px solid var(--border);
-  padding: 6rem 3rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 7rem 3rem;
 }
 
-/* Header */
-.cert-header {
-  margin-bottom: 3rem;
-}
-
-/* List */
 .cert-list {
+  position: relative;
+  margin-top: 3.5rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.2rem; /* more space between cards */
 }
 
-/* Each Item */
+/* vertical line */
+.cert-list::before {
+  content: "";
+  position: absolute;
+  left: 155px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--border);
+}
+
+/* each item */
 .cert-item {
   display: grid;
   grid-template-columns: 140px 1fr;
-  gap: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--border);
+  gap: 3.5rem;
   align-items: center;
+
+  padding: 1.4rem 1.6rem;
+  border-radius: 12px;
+
+  cursor: pointer;
+  transition: all 0.35s ease;
+  position: relative;
 }
 
-/* Left (Date) */
+/* BULGE EFFECT */
+.cert-item:hover {
+  transform: scale(1.03);
+  background: var(--surface2);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+/* date spacing */
 .cert-date {
-  font-size: 0.75rem;
+  text-align: right;
+  font-size: 0.85rem;
   color: var(--muted);
-  letter-spacing: 0.05em;
+  padding-right: 0.5rem;
 }
 
-/* Right Content */
-.cert-right {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* Text */
-.cert-text {
-  font-size: 0.95rem;
-  color: #aaa;
-  line-height: 1.6;
-}
-
-/* Arrow */
-.cert-arrow {
-  text-decoration: none;
-  font-size: 1.2rem;
-  color: var(--accent);
-  transition: 0.2s ease;
-}
-
-.cert-arrow:hover {
-  transform: translateY(-2px);
-  color: white;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .cert-item {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
-  }
-
-  .cert-right {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-}
-    /*Education*/
-    #education {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
-      border-top: 1px solid var(--border);
-      max-width: 1200px; margin: 0 auto; padding: 6rem 3rem;
-    }
-    .about-body { font-size: 0.85rem; color: #aaa; line-height: 2; }
-    .about-meta { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
-    .about-meta-item { display: flex; gap: 1rem; font-size: 0.75rem; }
-    .about-meta-item span:first-child { color: var(--accent); min-width: 80px; }
-    .about-meta-item span:last-child { color: var(--muted); }
-    .about-right { }
-    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-    .stat-box {
-      background: var(--card);
-      padding: 2rem;
-    }
-    .stat-box-n {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 2.5rem;
-      color: var(--accent);
-      letter-spacing: -0.04em;
-    }
-    .stat-box-l { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem; }
-
-    .edu-list {
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.edu-item {
-  display: grid;
-  grid-template-columns: 150px 1fr;
-  gap: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.edu-left {
-  font-size: 0.75rem;
-  color: var(--muted);
-  letter-spacing: 0.05em;
-}
-
-.edu-right {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.edu-degree {
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: 0.95rem;
-}
-
-.edu-school {
-  font-size: 0.8rem;
-  color: var(--accent);
-}
-
-.edu-score {
-  font-size: 0.75rem;
-  color: var(--muted);
-}
-
-#cp {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
-  align-items: start;
-  border-top: 1px solid var(--border);
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 6rem 3rem;
-}
-
-/* Right side list */
-.cp-right {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-/* Each row */
-.cp-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 1rem;
-}
-
-/* Platform name */
-.cp-platform {
-  font-size: 0.8rem;
-  color: var(--accent);
-  font-weight: 500;
-}
-
-/* Data + arrow */
-.cp-data {
+/* content */
+.cert-content {
   display: flex;
   align-items: center;
   gap: 1rem;
-  font-size: 0.8rem;
+  padding-left: 1.8rem;
+  position: relative;
+}
+
+/* dot */
+.cert-content::before {
+  content: "";
+  position: absolute;
+  left: -2.2rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: all 0.3s ease;
+}
+
+/* LOGO */
+.cert-logo {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+/* TEXT */
+.cert-content span {
+  font-size: 0.95rem;
+  color: #b5b5b5;
+  line-height: 1.5;
+}
+
+/* LINK */
+.cert-content a {
+  margin-left: auto;
+  text-decoration: none;
+  color: var(--accent);
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+/* arrow hover */
+.cert-item:hover .cert-content a {
+  transform: translateX(5px);
+}
+
+/* =========================
+   TOGGLE / EXPAND EFFECT
+   (works if you add .active class via JS later)
+   ========================= */
+
+.cert-details {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: all 0.4s ease;
+
+  margin-left: 140px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* active state */
+.cert-item.active {
+  transform: scale(1.04);
+  background: rgba(255,255,255,0.04);
+}
+
+.cert-item.active .cert-details {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 12px;
+}
+
+/* dot glow on active */
+.cert-item.active .cert-content::before {
+  transform: scale(1.5);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* smooth transitions globally */
+.cert-item,
+.cert-content,
+.cert-content a {
+  transition: all 0.35s ease;
+}
+    /*Education*/
+   
+/* =========================
+   EDUCATION SECTION SPACING
+   ========================= */
+
+#education {
+  padding: 7rem 3rem;
+}
+
+/* list container */
+.edu-list {
+  position: relative;
+  margin-top: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem; /* spacing between cards */
+}
+
+/* vertical timeline line */
+.edu-list::before {
+  content: "";
+  position: absolute;
+  left: 155px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--border);
+}
+
+/* each item card */
+.edu-item {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 3.5rem;
+
+  padding: 1.4rem 1.6rem;
+  border-radius: 12px;
+
+  position: relative;
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+/* BULGE EFFECT */
+.edu-item:hover {
+  transform: scale(1.03);
+  background: var(--surface2);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+/* LEFT SIDE (DATE) */
+.edu-left {
+  text-align: right;
+  font-size: 0.85rem;
+  color: var(--muted);
+  padding-right: 0.5rem;
+}
+
+/* RIGHT SIDE */
+.edu-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: relative;
+  padding-left: 1.8rem;
+}
+
+/* DOT */
+.edu-right::before {
+  content: "";
+  position: absolute;
+  left: -2.2rem;
+  top: 0.6rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: all 0.3s ease;
+}
+
+/* TEXT STYLES */
+.edu-degree {
+  font-size: 1rem;
+  color: #d6d6d6;
+}
+
+.edu-school {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.edu-score {
+  font-size: 0.85rem;
   color: var(--muted);
 }
 
-/* Arrow */
-.cp-data a {
-  text-decoration: none;
+/* ACTIVE (toggle-ready future support) */
+.edu-item.active {
+  transform: scale(1.04);
+  background: rgba(255,255,255,0.04);
+}
+
+/* dot glow when active */
+.edu-item.active .edu-right::before {
+  transform: scale(1.5);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* smooth transitions */
+.edu-item,
+.edu-right::before {
+  transition: all 0.35s ease;
+}
+
+#education,
+#Certificates {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* 👈 centers whole block */
+  text-align: left;      /* keeps content readable */
+  padding: 7rem 2rem;
+}
+
+/* LIMIT WIDTH FOR CLEAN CENTERED LOOK */
+.edu-list,
+.cert-list {
+  width: 100%;
+  max-width: 900px;   /* 👈 controls centering width */
+  margin: 3rem auto 0;
+}
+
+/* KEEP TIMELINE LINE POSITION CONSISTENT AFTER CENTER */
+.edu-list::before,
+.cert-list::before {
+  left: 140px;  /* adjust for centered layout */
+}
+
+/* OPTIONAL: make section header align nicely */
+.section-label,
+.section-title {
+  text-align: center;
+}
+
+
+
+/* =========================
+   CP SECTION CENTER ALIGN
+   ========================= */
+
+#cp {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4rem;
+  padding: 7rem 2rem;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* LEFT SIDE */
+#cp > div:first-child {
+  flex: 1;
+}
+
+/* RIGHT SIDE */
+.cp-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+/* CP CARD */
+.cp-item {
+  padding: 1.4rem 1.6rem;
+  border-radius: 12px;
+  transition: all 0.35s ease;
+  cursor: pointer;
+}
+
+/* BULGE EFFECT */
+.cp-item:hover {
+  transform: scale(1.03);
+  background: var(--surface2);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+/* PLATFORM */
+.cp-platform {
+  margin-bottom: 0.6rem;
+}
+
+/* DATA ROW */
+.cp-data {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* DETAILS (if used later) */
+.cp-details {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.4s ease;
+  font-size: 0.85rem;
   color: var(--muted);
-  font-size: 1rem;
-  transition: all 0.2s;
+}
+
+.cp-item:hover .cp-details {
+  max-height: 150px;
+  opacity: 1;
+  margin-top: 10px;
+}
+
+/* LINK */
+.cp-data a {
+  transition: transform 0.3s ease;
 }
 
 .cp-item:hover .cp-data a {
-  color: var(--accent);
-  transform: translate(3px, -3px);
+  transform: translateX(4px);
 }
 
 #cv {
@@ -898,6 +1125,82 @@
   #cv {
     padding: 4rem 1.5rem;
   }
+}
+
+
+/* CP SECTION CARD SPACING */
+.cp-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;   /* 👈 space between cards */
+}
+
+/* CP ITEM */
+.cp-item {
+  padding: 1.4rem 1.6rem;   /* 👈 more internal space */
+  border-radius: 12px;
+  transition: all 0.35s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+/* HOVER BULGE */
+.cp-item:hover {
+  transform: scale(1.03);
+  background: var(--surface2);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+/* PLATFORM TEXT SPACING */
+.cp-platform {
+  margin-bottom: 0.6rem;   /* 👈 separates heading from data */
+  font-size: 1rem;
+}
+
+/* DATA ROW */
+.cp-data {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* LINK */
+.cp-data a {
+  transition: transform 0.3s ease;
+}
+
+/* DETAILS (EXPAND AREA) */
+.cp-details {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: all 0.4s ease;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0;
+  line-height: 1.5;   /* 👈 better readability */
+}
+
+/* EXPAND ON HOVER */
+.cp-item:hover .cp-details {
+  max-height: 180px;  /* 👈 more space for text */
+  opacity: 1;
+  margin-top: 12px;
+}
+
+/* ACTIVE STATE (optional future toggle) */
+.cp-item.active {
+  transform: scale(1.04);
+  background: rgba(255,255,255,0.04);
+}
+
+/* LEFT SECTION TEXT BREATHING */
+#cp .about-body {
+  line-height: 1.7;
+  margin-top: 1rem;
+  color: var(--muted);
 }
 
     /* CONTACT */
@@ -1000,7 +1303,8 @@
       <li><a href="#experience">Experience</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#Certificates">Certificates</a></li>
-      <li><a href="#cp">CP</a></li>
+      <li><a href="#cp">Coding Profiles</a></li>
+      <li><a href="#cv">CV</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -1208,7 +1512,7 @@
 
     <!-- Project 6 -->
     <div class="timeline-item right">
-      <div class="timeline-date">Sep 2025 – Oct 2025</div>
+      <div class="timeline-date">Sep 2023 – Oct 2023</div>
       <div class="timeline-content">
         <h3>Restaurant Reservation Booking ↗</h3>
         <p>Web app for booking restaurant tables with real-time availability.</p>
@@ -1256,63 +1560,65 @@
 
   <div class="cert-list">
 
+    
+
     <div class="cert-item">
-      <div class="cert-left">
-        <div class="cert-date">Jan 2025</div>
-      </div>
-      <div class="cert-right">
-        <span class="cert-text">- Web Application Technologies and Django (Coursera)</span>
-        <a href="https://www.coursera.org/account/accomplishments/verify/EDLYCIV4HSMK" target="_blank" class="cert-arrow">↗</a>
+      <div class="cert-date">Mar 2026</div>
+      <div class="cert-content">
+        <img src="https://cdn.simpleicons.org/mongodb" class="cert-logo">
+        <span>CRUD Operations in MongoDB</span>
+        <a href="https://www.credly.com/badges/6a198d25-62e5-4a34-975a-48419f5900f9" target="_blank">↗</a>
       </div>
     </div>
 
     <div class="cert-item">
-      <div class="cert-left">
-        <div class="cert-date">Feb 2025</div>
-      </div>
-      <div class="cert-right">
-        <span class="cert-text">- CRUD Operations in MongoDB (MongoDB)</span>
-        <a href="https://www.credly.com/badges/6a198d25-62e5-4a34-975a-48419f5900f9" target="_blank" class="cert-arrow">↗</a>
-      </div>
-    </div>
-
-    <div class="cert-item">
-      <div class="cert-left">
-        <div class="cert-date">Mar 2025</div>
-      </div>
-      <div class="cert-right">
-        <span class="cert-text">- Oracle Data Platform 2025 Certified Foundations Associate (Oracle)</span>
-        <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=D4D2C383C0D72D37421927735889225A4A6E7A52C0BFEA2A3A790570C985DCB5" target="_blank" class="cert-arrow">↗</a>
+      <div class="cert-date">Mar 2026</div>
+      <div class="cert-content">
+        <img 
+  src="https://cdn.simpleicons.org/oracle/ff0000" 
+  class="cert-logo"
+  onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg';"
+/>
+        <span>Oracle Data Platform Certified Foundations Associate</span>
+        <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=D4D2C383C0D72D37421927735889225A4A6E7A52C0BFEA2A3A790570C985DCB5" target="_blank">↗</a>
       </div>
     </div>
 
     <div class="cert-item">
-      <div class="cert-left">
-        <div class="cert-date">Apr 2025</div>
+      <div class="cert-date">Oct 2025</div>
+      <div class="cert-content">
+        <img src="https://cdn.simpleicons.org/coursera" class="cert-logo">
+        <span>Web Application Technologies and Django</span>
+        <a href="https://www.coursera.org/account/accomplishments/verify/EDLYCIV4HSMK" target="_blank">↗</a>
       </div>
-      <div class="cert-right">
-        <span class="cert-text">- Programming in Python (HackerRank)</span>
-        <a href="https://www.hackerrank.com/certificates/dc8e39b7a2e5" target="_blank" class="cert-arrow">↗</a>
+    </div>
+
+    
+
+    <div class="cert-item">
+      <div class="cert-date">Sep 2024</div>
+      <div class="cert-content">
+        <img src="https://cdn.simpleicons.org/coursera" class="cert-logo">
+        <span>Introduction to Hardware and Operating System</span>
+        <a href="https://www.coursera.org/account/accomplishments/verify/DAU1SJRDR0CG" target="_blank">↗</a>
       </div>
     </div>
 
     <div class="cert-item">
-      <div class="cert-left">
-        <div class="cert-date">May 2025</div>
-      </div>
-      <div class="cert-right">
-        <span class="cert-text">- Introduction to Hardware and Operating System (Coursera)</span>
-        <a href="https://www.coursera.org/account/accomplishments/verify/DAU1SJRDR0CG" target="_blank" class="cert-arrow">↗</a>
+      <div class="cert-date">Oct 2024</div>
+      <div class="cert-content">
+        <img src="https://cdn.simpleicons.org/coursera" class="cert-logo">
+        <span>Fundamentals of Network Communication</span>
+        <a href="https://www.coursera.org/account/accomplishments/verify/8TN6CKPJ8I9I" target="_blank">↗</a>
       </div>
     </div>
 
     <div class="cert-item">
-      <div class="cert-left">
-        <div class="cert-date">Jun 2025</div>
-      </div>
-      <div class="cert-right">
-        <span class="cert-text">- Fundamentals of Network Communication (Coursera)</span>
-        <a href="https://www.coursera.org/account/accomplishments/verify/8TN6CKPJ8I9I" target="_blank" class="cert-arrow">↗</a>
+      <div class="cert-date">Dec 2023</div>
+      <div class="cert-content">
+        <img src="https://cdn.simpleicons.org/hackerrank" class="cert-logo">
+        <span>Programming in Python</span>
+        <a href="https://www.hackerrank.com/certificates/dc8e39b7a2e5" target="_blank">↗</a>
       </div>
     </div>
 
