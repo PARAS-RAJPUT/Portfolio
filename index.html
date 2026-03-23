@@ -403,6 +403,141 @@
       border-radius: 3px;
     }
 
+    /* TIMELINE */
+.timeline {
+  position: relative;
+  margin-top: 3rem;
+  padding-left: 1rem;
+}
+
+/* Vertical line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--border);
+  transform: translateX(-50%);
+}
+
+/* Timeline item */
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 2rem;
+}
+
+/* Left side */
+.timeline-item.left {
+  left: 0;
+  text-align: right;
+}
+
+/* Right side */
+.timeline-item.right {
+  left: 50%;
+}
+
+/* Dot */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 30px;
+  right: -8px;
+  width: 14px;
+  height: 14px;
+  background: var(--accent);
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.timeline-item.right::before {
+  left: -8px;
+}
+
+/* Content box */
+.timeline-content {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.timeline-content:hover {
+  background: var(--surface2);
+  transform: translateY(-4px);
+}
+
+/* Title */
+.timeline-content h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Description */
+.timeline-content p {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 0.8rem;
+  line-height: 1.6;
+}
+
+/* Clickable whole card */
+.timeline-content a {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+}
+
+/* Timeline date */
+.timeline-date {
+  position: absolute;
+  top: 28px;
+  font-size: 0.7rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+/* Position left side date */
+.timeline-item.left .timeline-date {
+  right: -160px; /* move outside */
+  text-align: left;
+}
+
+/* Position right side date */
+.timeline-item.right .timeline-date {
+  left: -160px;
+  text-align: right;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 900px) {
+  .timeline::before {
+    left: 10px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 2rem;
+  }
+
+  .timeline-item.left,
+  .timeline-item.right {
+    left: 0;
+    text-align: left;
+  }
+
+  .timeline-item::before {
+    left: 0;
+  }
+}
+
     /* EXPERIENCE */
     #experience { border-top: 1px solid var(--border); max-width: 1200px; margin: 0 auto; padding: 6rem 3rem; }
     .exp-list { display: flex; flex-direction: column; gap: 0; }
@@ -502,65 +637,82 @@
 
 
     /*Certificates*/
+
+
 #Certificates {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: start;
+  width: 100%;
   border-top: 1px solid var(--border);
+  padding: 6rem 3rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 6rem 3rem;
 }
 
-/* RIGHT SIDE LIST */
+/* Header */
+.cert-header {
+  margin-bottom: 3rem;
+}
+
+/* List */
 .cert-list {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 2rem;
 }
 
-/* ROW */
+/* Each Item */
 .cert-item {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+
+/* Left (Date) */
+.cert-date {
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+/* Right Content */
+.cert-right {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 0.8rem;
-  transition: all 0.2s ease;
 }
 
-/* HOVER */
-.cert-item:hover {
-  transform: translateY(-2px);
-}
-
-/* TEXT */
-.cert-name {
-  font-size: 0.9rem;
+/* Text */
+.cert-text {
+  font-size: 0.95rem;
   color: #aaa;
-  letter-spacing: 0.02em;
+  line-height: 1.6;
 }
 
-/* ARROW */
-.cert-link {
+/* Arrow */
+.cert-arrow {
   text-decoration: none;
-  font-size: 1rem;
-  color: var(--muted);
-  transition: all 0.2s ease;
-}
-
-.cert-item:hover .cert-link {
+  font-size: 1.2rem;
   color: var(--accent);
-  transform: translate(3px, -3px);
+  transition: 0.2s ease;
 }
 
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  #Certificates {
+.cert-arrow:hover {
+  transform: translateY(-2px);
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cert-item {
     grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 4rem 1.5rem;
+    gap: 0.5rem;
+  }
+
+  .cert-right {
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
     /*Education*/
@@ -973,95 +1125,104 @@
   </div>
 
   <!-- PROJECTS -->
-  <div id="projects" class="reveal">
-    <div class="section-label">Work</div>
-    <h2 class="section-title">Projects</h2>
-    <div class="projects-grid">
-      <a class="project-card" href="https://github.com/PARAS-RAJPUT/Forest-Fire-Prediction-and-Rapid-Response-System" target="_blank">
-        <div class="project-header">
-          <div class="project-icon">🤟</div>
-          <div class="project-arrow">↗</div>
-        </div>
-        <div class="project-title">Forest Fire Prediction & Rapid Response System</div>
-        <div class="project-desc">A machine learning model to predict and analyze the risk of forest fires based on environmental factors.(In Progress)</div>
+<div id="projects" class="reveal">
+  <div class="section-label">Work</div>
+  <h2 class="section-title">Projects</h2>
+
+  <div class="timeline">
+
+    <!-- Project 1 -->
+    <div class="timeline-item left">
+      <div class="timeline-date">Mar 2026 – Present</div>
+      <div class="timeline-content">
+        <h3>Forest Fire Prediction & Rapid Response System ↗</h3>
+        <p>A machine learning model to predict and analyze forest fire risk based on environmental factors. (In Progress)</p>
         <div class="project-tags">
           <span class="project-tag">Java</span>
           <span class="project-tag">Hadoop</span>
           <span class="project-tag">FAST 3.0</span>
         </div>
-      </a>
+        <a href="https://github.com/PARAS-RAJPUT/Forest-Fire-Prediction-and-Rapid-Response-System" target="_blank"></a>
+      </div>
+    </div>
 
-      <a class="project-card" href="https://github.com/PARAS-RAJPUT/MoneyMap-Smart-Expense-Monitoring-System" target="_blank">
-        <div class="project-header">
-          <div class="project-icon">🧠</div>
-          <div class="project-arrow">↗</div>
-        </div>
-        <div class="project-title">MoneyMap: Smart Expense Monitoring System</div>
-        <div class="project-desc">A smart expense monitoring system that provides real-time insights and analytics for personal finance management.</div>
+    <!-- Project 2 -->
+    <div class="timeline-item right">
+      <div class="timeline-date">Jan 2026 – Feb 2026</div>
+      <div class="timeline-content">
+        <h3>MoneyMap: Smart Expense Monitoring System ↗</h3>
+        <p>Real-time expense monitoring system with analytics for personal finance.</p>
         <div class="project-tags">
           <span class="project-tag">Node.js</span>
           <span class="project-tag">Express.js</span>
           <span class="project-tag">MongoDB</span>
         </div>
-      </a>
-      <a class="project-card" href="https://github.com/PARAS-RAJPUT/Predictive-Analysis-On-Bank-Deposits" target="_blank">
-        <div class="project-header">
-          <div class="project-icon">👁️</div>
-          <div class="project-arrow">↗</div>
-        </div>
-        <div class="project-title">Predictive Analysis on Bank Deposits</div>
-        <div class="project-desc">Predictive analysis of bank deposit patterns using machine learning techniques.</div>
+        <a href="https://github.com/PARAS-RAJPUT/MoneyMap-Smart-Expense-Monitoring-System" target="_blank"></a>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="timeline-item left">
+      <div class="timeline-date">Nov 2025 – Dec 2025</div>
+      <div class="timeline-content">
+        <h3>Predictive Analysis on Bank Deposits ↗</h3>
+        <p>ML-based predictive analysis using regression & classification techniques.</p>
         <div class="project-tags">
-          <span class="project-tag">Predictive Analytics</span>
+          <span class="project-tag">TensorFlow</span>
           <span class="project-tag">Regression</span>
           <span class="project-tag">Classification</span>
-          <span class="project-tag">TensorFlow</span>
         </div>
-      </a>
-      
-      <a class="project-card" href="https://github.com/PARAS-RAJPUT/AviationCrashReportAnalysis" target="_blank">
-        <div class="project-header">
-          <div class="project-icon">📋</div>
-          <div class="project-arrow">↗</div>
-        </div>
-        <div class="project-title">Aviation Crash Report Analysis</div>
-        <div class="project-desc">Analysis of aviation crash reports using data science techniques.</div>
+        <a href="https://github.com/PARAS-RAJPUT/Predictive-Analysis-On-Bank-Deposits" target="_blank"></a>
+      </div>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="timeline-item right">
+      <div class="timeline-date">Apr 2025 – May 2025</div>
+      <div class="timeline-content">
+        <h3>Aviation Crash Report Analysis ↗</h3>
+        <p>Data analysis of aviation crash datasets with visual insights.</p>
         <div class="project-tags">
-          <span class="project-tag">Data Science</span>
           <span class="project-tag">Python</span>
-          <span class="project-tag">Matplotlib</span>
           <span class="project-tag">Pandas</span>
           <span class="project-tag">Plotly</span>
         </div>
-      </a>
-      <a class="project-card" href="https://github.com/PARAS-RAJPUT/Budget-Management-AI-chatbot" target="_blank">
-        <div class="project-header">
-          <div class="project-icon">🏥</div>
-          <div class="project-arrow">↗</div>
-        </div>
-        <div class="project-title">Budget Management AI Chatbot</div>
-        <div class="project-desc">An AI-powered chatbot for managing personal budgets and financial planning.</div>
+        <a href="https://github.com/PARAS-RAJPUT/AviationCrashReportAnalysis" target="_blank"></a>
+      </div>
+    </div>
+
+    <!-- Project 5 -->
+    <div class="timeline-item left">
+      <div class="timeline-date">Mar 2025 – Apr 2025</div>
+      <div class="timeline-content">
+        <h3>Budget Management AI Chatbot ↗</h3>
+        <p>AI chatbot for personal finance tracking and budgeting.</p>
         <div class="project-tags">
           <span class="project-tag">Python</span>
           <span class="project-tag">ML</span>
           <span class="project-tag">Streamlit</span>
         </div>
-      </a>
-      <a class="project-card" href="https://github.com/PARAS-RAJPUT/Restaurant-Reservation-Booking" target="_blank">
-        <div class="project-header">
-          <div class="project-icon">🎮</div>
-          <div class="project-arrow">↗</div>
-        </div>
-        <div class="project-title">Restaurant Reservation Booking</div>
-        <div class="project-desc">A web application for booking restaurant tables with a user-friendly interface and real-time availability updates.</div>
+        <a href="https://github.com/PARAS-RAJPUT/Budget-Management-AI-chatbot" target="_blank"></a>
+      </div>
+    </div>
+
+    <!-- Project 6 -->
+    <div class="timeline-item right">
+      <div class="timeline-date">Sep 2025 – Oct 2025</div>
+      <div class="timeline-content">
+        <h3>Restaurant Reservation Booking ↗</h3>
+        <p>Web app for booking restaurant tables with real-time availability.</p>
         <div class="project-tags">
           <span class="project-tag">HTML</span>
           <span class="project-tag">CSS</span>
           <span class="project-tag">JavaScript</span>
         </div>
-      </a>
+        <a href="https://github.com/PARAS-RAJPUT/Restaurant-Reservation-Booking" target="_blank"></a>
+      </div>
     </div>
+
   </div>
+</div>
 
   <!-- EXPERIENCE -->
   <div id="experience" class="reveal">
@@ -1087,46 +1248,77 @@
   <!-- Courses -->
   <!-- Certificates -->
 <div id="Certificates" class="reveal">
-  <div>
+  
+  <div class="cert-header">
     <div class="section-label">Certificates</div>
     <h2 class="section-title">Certifications</h2>
   </div>
 
-    <div class="cert-list">
+  <div class="cert-list">
 
-      <div class="cert-item">
+    <div class="cert-item">
+      <div class="cert-left">
+        <div class="cert-date">Jan 2025</div>
+      </div>
+      <div class="cert-right">
         <span class="cert-text">- Web Application Technologies and Django (Coursera)</span>
         <a href="https://www.coursera.org/account/accomplishments/verify/EDLYCIV4HSMK" target="_blank" class="cert-arrow">↗</a>
       </div>
+    </div>
 
-      <div class="cert-item">
+    <div class="cert-item">
+      <div class="cert-left">
+        <div class="cert-date">Feb 2025</div>
+      </div>
+      <div class="cert-right">
         <span class="cert-text">- CRUD Operations in MongoDB (MongoDB)</span>
         <a href="https://www.credly.com/badges/6a198d25-62e5-4a34-975a-48419f5900f9" target="_blank" class="cert-arrow">↗</a>
       </div>
+    </div>
 
-      <div class="cert-item">
+    <div class="cert-item">
+      <div class="cert-left">
+        <div class="cert-date">Mar 2025</div>
+      </div>
+      <div class="cert-right">
         <span class="cert-text">- Oracle Data Platform 2025 Certified Foundations Associate (Oracle)</span>
         <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=D4D2C383C0D72D37421927735889225A4A6E7A52C0BFEA2A3A790570C985DCB5" target="_blank" class="cert-arrow">↗</a>
       </div>
+    </div>
 
-      <div class="cert-item">
+    <div class="cert-item">
+      <div class="cert-left">
+        <div class="cert-date">Apr 2025</div>
+      </div>
+      <div class="cert-right">
         <span class="cert-text">- Programming in Python (HackerRank)</span>
         <a href="https://www.hackerrank.com/certificates/dc8e39b7a2e5" target="_blank" class="cert-arrow">↗</a>
       </div>
+    </div>
 
-      <div class="cert-item">
+    <div class="cert-item">
+      <div class="cert-left">
+        <div class="cert-date">May 2025</div>
+      </div>
+      <div class="cert-right">
         <span class="cert-text">- Introduction to Hardware and Operating System (Coursera)</span>
         <a href="https://www.coursera.org/account/accomplishments/verify/DAU1SJRDR0CG" target="_blank" class="cert-arrow">↗</a>
       </div>
+    </div>
 
-      <div class="cert-item">
+    <div class="cert-item">
+      <div class="cert-left">
+        <div class="cert-date">Jun 2025</div>
+      </div>
+      <div class="cert-right">
         <span class="cert-text">- Fundamentals of Network Communication (Coursera)</span>
         <a href="https://www.coursera.org/account/accomplishments/verify/8TN6CKPJ8I9I" target="_blank" class="cert-arrow">↗</a>
       </div>
-
     </div>
+
   </div>
 </div>
+
 
   <!-- Education -->
 <div id="education" class="reveal">
